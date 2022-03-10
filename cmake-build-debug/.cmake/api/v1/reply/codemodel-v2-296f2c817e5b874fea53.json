@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/goinfre/hloralee/ft_container/cmake-build-debug",
-		"source" : "/goinfre/hloralee/ft_container"
+		"build" : "/Users/hloralee/Desktop/ft_container/cmake-build-debug",
+		"source" : "/Users/hloralee/Desktop/ft_container"
 	},
 	"version" : 
 	{
