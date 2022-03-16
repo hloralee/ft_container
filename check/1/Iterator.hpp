@@ -25,20 +25,20 @@ namespace ft{
         {
             iter = other.getCell();
         }
-        Iterator(const ConstIterator<T> & other)
-        {
-            iter = other.getCell();
-        }
-        Iterator& operator=(const Iterator& other)
-        {
-            this->iter = other.getCell();
-            return *this;
-        }
-        Iterator& operator=(const ConstIterator<T> & other)
+       // Iterator(const ConstIterator<T> & other)
+       // {
+       //     iter = other.getCell();
+       // }
+        Iterator* operator=(const Iterator& other)
         {
             this->iter = other.getCell();
-            return *this;
+            return this;
         }
+        //Iterator& operator=(const ConstIterator<T> & other)
+        //{
+        //    this->iter = other.getCell();
+        //    return *this;
+        //}
         pointer operator->() const
         {
             return this->iter;
@@ -69,7 +69,7 @@ namespace ft{
             this->operator--();
             return tmp;
         }
-        Iterator operator+=(const difference_type & idx)
+        Iterator& operator+=(const difference_type & idx)
         {
             iter += idx;
             return *this;
@@ -108,7 +108,7 @@ namespace ft{
 //        }
         reference operator[](const difference_type & idx)
         {
-            return *(this->iter + idx);
+            return *(iter + idx);
         }
         bool operator<(const Iterator&other)
         {

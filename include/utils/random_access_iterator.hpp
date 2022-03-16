@@ -20,7 +20,7 @@ namespace  ft {
         random_access_iterator& operator=(const random_access_iterator& other){
             if (this == other)
                 return ;
-            _point = other._point;
+            _point = other.get_pointer();
             return *this;
         };
 
@@ -30,6 +30,52 @@ namespace  ft {
 
         pointer operator->() const {return _point;}
         pointer operator*() const {return *(this->_point);}
+        random_access_iterator& operator++() {
+            _point++;
+            return *this;
+        }
+
+        random_access_iterator& operator++(int) {
+            random_access_iterator new(*this);
+            _point++;
+            return *new;
+        }
+        random_access_iterator& operator--() {
+            _point--;
+            return *this;
+        }
+
+        random_access_iterator& operator--(int) {
+            random_access_iterator new(*this);
+            _point--;
+            return *this;
+        }
+
+        random_access_iterator& operator+(const difference_type& n) {
+            _point += n;
+            return *this;
+        }
+
+        random_access_iterator& operator-(const difference_type& n) {
+            _point -= n;
+            return *this;
+        }
+
+        random_access_iterator& operator+=(const difference_type& n) {
+            _point += n;
+            return *this;
+        }
+
+        random_access_iterator& operator-=(const difference_type& n) {
+            _point -= n;
+            return *this;
+        }
+
+        reference operator[](const difference_type& n) {
+            return *(_point + n);
+        }
+
+
 
     private:
         pointer  _point;

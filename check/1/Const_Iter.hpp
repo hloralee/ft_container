@@ -25,7 +25,7 @@ namespace ft{
         {
             iter = other.getCell();
         }
-        ConstIterator(const Iterator<T> & other)
+        ConstIterator(const Iterator<T>& other)
         {
             iter = other.getCell();
         }
