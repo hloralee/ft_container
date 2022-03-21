@@ -25,6 +25,20 @@ namespace ft {
         typedef ft::reverse_iterator<const_iterator>                const_reverse_iterator;
         typedef size_t                                              size_type;
         typedef ptrdiff_t                                           difference_type;
+
+
+        explicit vector(const allocator_type& alloc = allocator_type()) :
+        _alloc(alloc), _size(0), _capacity(0), _buffer(_alloc.allocate(0))
+        {}
+
+        explicit vector (size_type n, const value_type& val = value_type(),
+                         const allocator_type& alloc = allocator_type()) :
+        _alloc(alloc), _size(0), _capacity(0), _buffer(_alloc.allocate(0))
+        {
+            this
+        }
+    }
+
     private:
         size_t                                                  _size;
         size_t                                                  _capacity;

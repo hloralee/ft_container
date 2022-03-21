@@ -19,7 +19,7 @@ namespace  ft {
 
         random_access_iterator& operator=(const random_access_iterator& other){
             if (this == other)
-                return ;
+                return *this;
             _point = other.get_pointer();
             return *this;
         };
@@ -35,43 +35,47 @@ namespace  ft {
             return *this;
         }
 
-        random_access_iterator& operator++(int) {
-            random_access_iterator new(*this);
+        random_access_iterator operator++(int) {
+            random_access_iterator n(this);
             _point++;
-            return *new;
+            return n;
         }
         random_access_iterator& operator--() {
             _point--;
             return *this;
         }
 
-        random_access_iterator& operator--(int) {
-            random_access_iterator new(*this);
+        random_access_iterator operator--(int) {
+            random_access_iterator n(this);
             _point--;
-            return *this;
+            return n;
         }
 
-        random_access_iterator& operator+(const difference_type& n) {
+        random_access_iterator& operator+(difference_type n) {
             _point += n;
             return *this;
         }
 
-        random_access_iterator& operator-(const difference_type& n) {
+        random_access_iterator& operator-(difference_type n) {
             _point -= n;
             return *this;
         }
 
-        random_access_iterator& operator+=(const difference_type& n) {
+        difference_type operator-(const random_access_iterator& other) {
+            return (this.get_pointer() - other.get_pointer());
+        }
+
+        random_access_iterator& operator+=(difference_type n) {
             _point += n;
             return *this;
         }
 
-        random_access_iterator& operator-=(const difference_type& n) {
+        random_access_iterator& operator-=(difference_type n) {
             _point -= n;
             return *this;
         }
 
-        reference operator[](const difference_type& n) {
+        reference operator[](difference_type n) {
             return *(_point + n);
         }
 
@@ -82,4 +86,103 @@ namespace  ft {
 
     };
 
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator==(const ft::random_access_iterator<T>& first,
+            const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() == last.get_pointer() ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator==(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() == last.get_pointer()) ;
+    }
+
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator!=(const ft::random_access_iterator<T>& first,
+               const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() != last.get_pointer()) ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator==(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() != last.get_pointer()) ;
+    }
+
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator>(const ft::random_access_iterator<T>& first,
+               const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() > last.get_pointer()) ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator>(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() > last.get_pointer()) ;
+    }
+
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator<(const ft::random_access_iterator<T>& first,
+               const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() < last.get_pointer()) ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator<(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() < last.get_pointer()) ;
+    }
+
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator>=(const ft::random_access_iterator<T>& first,
+               const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() >= last.get_pointer()) ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator>=(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() >= last.get_pointer()) ;
+    }
+
+    template<typename T>
+    typename ft::random_access_iterator<T>::difference_type
+    operator<=(const ft::random_access_iterator<T>& first,
+               const ft::random_access_iterator<T>& last) {
+        return (first.get_pointer() <= last.get_pointer()) ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator<=(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() <= last.get_pointer()) ;
+    }
+
+
+    template<typename T>
+    typename ft::random_access_iterator<T>&
+    operator+(typename ft::random_access_iterator<T>::difference_type n,
+               const ft::random_access_iterator<T>& th) {
+        th.get_pointer() += n;
+        return *th ;
+    }
+
+    template<typename F, typename L>
+    typename ft::random_access_iterator<F>::difference_type
+    operator-(const ft::random_access_iterator<F>& first,
+               const ft::random_access_iterator<L>& last) {
+        return (first.get_pointer() - last.get_pointer()) ;
+    }
 };

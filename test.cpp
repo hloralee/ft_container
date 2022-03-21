@@ -5,22 +5,8 @@
 
 
 int main() {
-    std::vector<int> a;
+    std::vector<int> a(20, 1);
 
-    for (int i = 0; i < 5; i++) {
-        a.push_back(i);
-    }
-
-    std::vector<int>::const_iterator it = a.begin();
-    std::vector<int>::iterator at = a.end();
-
-    int iii = 0;
-
-    while (it != at){
-        std::vector<int>::iterator con(it);
-        std::cout << it[iii] << "\n";
-        std::cout << *con << "\n";
-        it++;
-    }
-
+    std::cout << "Длина а = " << a.size() << "\n";
+    std::cout << "Емкость а = " << a.capacity() << "\n";
 }

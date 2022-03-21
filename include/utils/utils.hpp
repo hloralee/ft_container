@@ -35,7 +35,6 @@ namespace ft {
     struct is_integral_res{
         static const bool value = B;
     };
-
     template <typename T>
     struct is_integral : public is_integral_res<false, T> {};
     template <>
