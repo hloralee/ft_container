@@ -29,14 +29,14 @@ namespace  ft {
         pointer get_pointer() const {return _point;}
 
         pointer operator->() const {return _point;}
-        pointer operator*() const {return *(this->_point);}
+        reference operator*() const {return *_point;}
         random_access_iterator& operator++() {
             _point++;
             return *this;
         }
 
         random_access_iterator operator++(int) {
-            random_access_iterator n(this);
+            random_access_iterator n(*this);
             _point++;
             return n;
         }
@@ -62,7 +62,7 @@ namespace  ft {
         }
 
         difference_type operator-(const random_access_iterator& other) {
-            return (this.get_pointer() - other.get_pointer());
+            return (other.get_pointer() - this->get_pointer());
         }
 
         random_access_iterator& operator+=(difference_type n) {
@@ -90,7 +90,7 @@ namespace  ft {
     typename ft::random_access_iterator<T>::difference_type
     operator==(const ft::random_access_iterator<T>& first,
             const ft::random_access_iterator<T>& last) {
-        return (first.get_pointer() == last.get_pointer() ;
+        return (first.get_pointer() == last.get_pointer());
     }
 
     template<typename F, typename L>
@@ -109,7 +109,7 @@ namespace  ft {
 
     template<typename F, typename L>
     typename ft::random_access_iterator<F>::difference_type
-    operator==(const ft::random_access_iterator<F>& first,
+    operator!=(const ft::random_access_iterator<F>& first,
                const ft::random_access_iterator<L>& last) {
         return (first.get_pointer() != last.get_pointer()) ;
     }
@@ -183,6 +183,6 @@ namespace  ft {
     typename ft::random_access_iterator<F>::difference_type
     operator-(const ft::random_access_iterator<F>& first,
                const ft::random_access_iterator<L>& last) {
-        return (first.get_pointer() - last.get_pointer()) ;
+        return (last.get_pointer() - first.get_pointer()) ;
     }
 };

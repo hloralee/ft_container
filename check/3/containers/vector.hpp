@@ -195,7 +195,7 @@ namespace ft
 			template <class InputIterator>
 					vector (InputIterator first, InputIterator last,
 							const allocator_type& alloc = allocator_type(),
-							typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
+							  )
 			:
 				_alloc(alloc)
 			{
