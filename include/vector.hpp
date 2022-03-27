@@ -107,9 +107,8 @@ namespace ft {
         }
 
         void clear() {
-            while (_size--)
-                _alloc.destroy(_buffer + _size);
-            _alloc.destroy(_buffer);
+            while (_size)
+                _alloc.destroy(_buffer + --_size);
         }
 
         template <class InputIterator>
@@ -144,8 +143,8 @@ namespace ft {
                 _buffer = _alloc.allocate(n);
                 _capacity = n;
             }
-            while (n-- >= 0)
-                _alloc.construct(_buffer + n, val);
+            while (n > 0)
+                _alloc.construct(_buffer + --n, val);
         }
 
         void reserve (size_type n) {
@@ -176,6 +175,29 @@ namespace ft {
         size_type size() const {
             return _size;
         }
+
+        bool empty() const {
+            return (_size == 0 ? true : false);
+        }
+
+        void resize (size_type n, value_type val = value_type()) {
+            if (n < _size) {
+                while (_size != n)
+                    _alloc.destroy(_buffer + --_size);
+            }
+            else if (n > _capacity) {
+                size_type nw = (n > _capacity * 2) ? n : _capacity * 2;
+                reserve(nw);
+                while (_size != n) {
+                    _alloc.construct(_buffer + _size++, val);
+                }
+            }
+        }
+
+        void pop_back() {
+            _alloc.destroy(_buffer + --_size);
+        }
+
     private:
         size_t _size;
         size_t _capacity;

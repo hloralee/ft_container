@@ -6,50 +6,43 @@
 
 
 int main() {
-    ft::vector<int> a;
+    {
+        std::cout << "Standart vector\n";
+        std::vector<int> b(10, 1);
+        std::cout << "Size is " << b.size() << "\n";
+        std::cout << "Capacity is " << b.capacity() << "\n";
+        std::vector<int>::iterator bg = b.begin();
+        std::vector<int>::iterator ed = b.end();
 
-    for (int i = 0; i < 10; i++){
-        a.push_back(i);
-        std::cout << "Size is " << a.size() << "\n";
-        std::cout << "Capacity is " << a.capacity() << "\n";
+        while (bg != ed)
+            std::cout << *bg++ << "\n";
+        b.resize(40);
+        b.clear();
+        std::cout << "Empty is " << b.empty() << "\n";
+        std::cout << "Size is " << b.size() << "\n";
+        std::cout << "Capacity is " << b.capacity() << "\n";
+        std::vector<int>::iterator beg = b.begin();
+        std::vector<int>::iterator end = b.end();
+
+        while (beg != end)
+            std::cout << *beg++ << "\n";
+
     }
-
-    ft::vector<int>::iterator beg = a.begin();
-    ft::vector<int>::iterator end = a.end();
-
-    while (beg != end)
-        std::cout << *beg++ << "\n";
-
-
-    ft::vector<int> b(a);
+    std::cout << "MY vector\n";
+    ft::vector<int> b(10, 1);
+    std::cout << "Size is " << b.size() << "\n";
+    std::cout << "Capacity is " << b.capacity() << "\n";
     ft::vector<int>::iterator bg = b.begin();
     ft::vector<int>::iterator ed = b.end();
 
     while (bg != ed)
         std::cout << *bg++ << "\n";
+    b.resize(40);
+    std::cout << "Size is " << b.size() << "\n";
+    std::cout << "Capacity is " << b.capacity() << "\n";
+    ft::vector<int>::iterator big = b.begin();
+    ft::vector<int>::iterator eid = b.end();
 
-
-//    std::vector<int> a(10, 1);
-//    std::vector<int>::iterator b = a.begin();
-//    std::vector<int>::iterator e = a.end();
-//
-//    std::vector<int> nw(20, 1);
-//
-//    std::cout << "Size is " << nw.size() << "\n";
-//    std::cout << "Capacity is " << nw.capacity() << "\n";
-//
-//    nw.clear();
-//
-//    std::cout << "Size is " << nw.size() << "\n";
-//    std::cout << "Capacity is " << nw.capacity() << "\n";
-
-   // a.reserve(10);
-    //std::vector<int>::iterator b = a.begin();
-    //std::vector<int>::iterator e = a.end();
-
-    //std::cout << "Size is " << a.size() << "\n";
-    //std::cout << "Capacity is " << a.capacity() << "\n";
-
-    //while (b != e) {
-    //    std::cout << e-b << ": " << *b++ << "\n";
+    while (big != eid)
+        std::cout << *big++ << "\n";
 }
