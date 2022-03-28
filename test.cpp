@@ -16,8 +16,8 @@ int main() {
 
         while (bg != ed)
             std::cout << *bg++ << "\n";
-        b.resize(40);
-        b.clear();
+       b.reserve(12);
+        b.insert(b.begin()+2, 3, 5);
         std::cout << "Empty is " << b.empty() << "\n";
         std::cout << "Size is " << b.size() << "\n";
         std::cout << "Capacity is " << b.capacity() << "\n";
@@ -26,7 +26,6 @@ int main() {
 
         while (beg != end)
             std::cout << *beg++ << "\n";
-
     }
     std::cout << "MY vector\n";
     ft::vector<int> b(10, 1);
@@ -37,12 +36,15 @@ int main() {
 
     while (bg != ed)
         std::cout << *bg++ << "\n";
-    b.resize(40);
+   b.reserve(12);
+    b.insert(b.begin()+2, 3, 5 );
+    std::cout << "Empty is " << b.empty() << "\n";
     std::cout << "Size is " << b.size() << "\n";
     std::cout << "Capacity is " << b.capacity() << "\n";
-    ft::vector<int>::iterator big = b.begin();
-    ft::vector<int>::iterator eid = b.end();
+    ft::vector<int>::iterator beg = b.begin();
+    ft::vector<int>::iterator end = b.end();
 
-    while (big != eid)
-        std::cout << *big++ << "\n";
+    while (beg != end)
+        std::cout << *beg++ << "\n";
+
 }

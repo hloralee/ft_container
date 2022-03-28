@@ -115,7 +115,7 @@ namespace ft {
         void assign (InputIterator first, InputIterator last,
                      typename ft::enable_if<!ft::is_integral<InputIterator>::value,
                      InputIterator>::type* = null_ptr) {
-            difference_type n = first - last;
+            difference_type n = last - first;
             if (n <= 0)
                 return;
             clear();
@@ -198,6 +198,51 @@ namespace ft {
             _alloc.destroy(_buffer + --_size);
         }
 
+        iterator insert (iterator position, const value_type& val) {
+            difference_type n = &(*position) - _buffer;
+            insert(position, 1, val);
+            return (_buffer + n);
+        }
+
+        void insert (iterator position, size_type n, const value_type& val) {
+            pointer tmp = _alloc.allocate(n);
+            size_type nw = n;
+            while (nw)
+                _alloc.construct(tmp + --nw, val);
+            insert(position, tmp, tmp + n);
+            _alloc.deallocate(tmp, n);
+        }
+
+        template <class InputIterator>
+        void insert (iterator position, InputIterator first, InputIterator last,
+                     typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+                             InputIterator>::type* = null_ptr) {
+            difference_type dif = &(*position) - _buffer;
+            difference_type n = last - first;
+            if (_size + n > _capacity) {
+                size_type nw = (_size + n > _capacity * 2) ? _size + n : _capacity * 2;
+                pointer tmp = _buffer;
+                _buffer = _alloc.allocate(nw);
+                _size += n;
+                for (int i = 0; i < _size; i++) {
+                    if (i >= dif && i < dif + n)
+                        _alloc.construct(_buffer + i, *first++);
+                    else if (i >= _size - n)
+                        _alloc.construct(_buffer + i, *(tmp + i - n));
+                    else
+                        _alloc.construct(_buffer + i, *(tmp + i));
+                }
+                _alloc.deallocate(tmp, _capacity);
+                _capacity = nw;
+            }
+            else {
+                for (int i = _size + n; i >= dif + n; i--)
+                    _alloc.construct(_buffer + i, *(_buffer + i - n));
+                for (int i = dif; i < dif + n; i ++)
+                    _alloc.construct(_buffer + i, *first++);
+                _size += n;
+            }
+        }
     private:
         size_t _size;
         size_t _capacity;

@@ -62,7 +62,7 @@ namespace  ft {
         }
 
         difference_type operator-(const random_access_iterator& other) {
-            return (other.get_pointer() - this->get_pointer());
+            return (this->get_pointer() - other.get_pointer());
         }
 
         random_access_iterator& operator+=(difference_type n) {
