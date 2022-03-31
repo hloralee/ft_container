@@ -15,18 +15,18 @@ namespace ft {
     class vector {
 
     public:
-        typedef T value_type;
-        typedef Alloc allocator_type;
-        typedef T & reference;
-        typedef const T & const_reference;
-        typedef T * pointer;
-        typedef const T * const_pointer;
-        typedef ft::random_access_iterator<T> iterator;
-        typedef ft::random_access_iterator<const T> const_iterator;
-        typedef std::reverse_iterator<iterator> reverse_iterator;
-        typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
-        typedef size_t size_type;
-        typedef ptrdiff_t difference_type;
+        typedef T                                       value_type;
+        typedef Alloc                                   allocator_type;
+        typedef T &                                     reference;
+        typedef const T &                               const_reference;
+        typedef T *                                     pointer;
+        typedef const T *                               const_pointer;
+        typedef ft::random_access_iterator<T>           iterator;
+        typedef ft::random_access_iterator<const T>     const_iterator;
+        typedef ft::reverse_iterator<iterator>          reverse_iterator;
+        typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
+        typedef size_t                                  size_type;
+        typedef ptrdiff_t                               difference_type;
 
 
         explicit vector(const allocator_type &alloc = allocator_type()) :
@@ -238,10 +238,84 @@ namespace ft {
             else {
                 for (int i = _size + n; i >= dif + n; i--)
                     _alloc.construct(_buffer + i, *(_buffer + i - n));
-                for (int i = dif; i < dif + n; i ++)
+                for (int i = dif; i < dif + n; i++)
                     _alloc.construct(_buffer + i, *first++);
                 _size += n;
             }
+        }
+        iterator erase (iterator position) {
+            return (erase(position, position + 1));
+        }
+
+        iterator erase (iterator first, iterator last) {
+            difference_type n = last - first;
+            difference_type pos = first - begin();
+            size_type len = _size - pos - n;
+            while (len) {
+                _alloc.construct(&(*first++), *(end() - len));
+                _alloc.destroy(&(*end()) - len--);
+            }
+            if (first < last)
+                while (first != last)
+                    _alloc.destroy(&(*first++));
+            _size -= n;
+            return (_buffer + pos);
+        }
+
+        void swap (vector& x) {
+            if (this == &x)
+                return ;
+            vector tmp(x);
+            pointer buf = x._buffer;
+            x._buffer = _buffer;
+            x._size = _size;
+            x._capacity = _capacity;
+            x._alloc = _alloc;
+
+            _alloc = tmp._alloc;
+            _capacity = tmp._capacity;
+            _size = tmp._size;
+            _buffer = buf;
+        }
+
+        allocator_type get_allocator() const {
+            return (_alloc);
+        }
+
+        reference operator[] (size_type n) {
+            return (_buffer[n]);
+        }
+
+        const_reference operator[] (size_type n) const {
+            return (_buffer[n]);
+        }
+
+        reference at (size_type n) {
+            if (n >= _size)
+                throw std::out_of_range("Error! Out of range\n");
+            return (_buffer[n]);
+        }
+
+        const_reference at (size_type n) const {
+            if (n >= _size)
+                throw std::out_of_range("Error! Out of range\n");
+            return (_buffer[n]);
+        }
+
+        reference front() {
+            return (*_buffer);
+        }
+
+        const_reference front() const {
+            return (*_buffer);
+        }
+
+        reference back(){
+            return _buffer[_size - 1];
+        }
+
+        const_reference back() const{
+            return _buffer[_size - 1];
         }
     private:
         size_t _size;
@@ -250,4 +324,41 @@ namespace ft {
         value_type *_buffer;
 
     };
+
+    template <class T, class Alloc>
+    bool operator==(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last) {
+        return (first.size() == last.size() &&
+        ft::equal(first.begin(), first.end(), last.begin()));
+    }
+
+    template <class T, class Alloc>
+    bool operator!=(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
+        return (!ft::equal(first.begin(), first.end(), last.begin()));
+    }
+
+    template <class T, class Alloc>
+    bool operator<(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
+        return(ft::lexicographical_compare(first.begin(), first.end(),
+                                           last.begin(), last.end()));
+    }
+
+    template <class T, class Alloc>
+    bool operator<=(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
+        return(ft::lexicographical_compare(first.begin(), first.end(),
+                                           last.begin(), last.end()) ||
+                ft::equal(first.begin(), first.end(), last.begin()));
+    }
+
+    template <class T, class Alloc>
+    bool operator>(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
+        return(!ft::lexicographical_compare(first.begin(), first.end(),
+                                           last.begin(), last.end()));
+    }
+
+    template <class T, class Alloc>
+    bool operator>=(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
+        return(!ft::lexicographical_compare(first.begin(), first.end(),
+                                           last.begin(), last.end()) ||
+               ft::equal(first.begin(), first.end(), last.begin()));
+    }
 }
