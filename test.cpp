@@ -2,48 +2,55 @@
 # include "include/vector.hpp"
 # include <iostream>
 # include <vector>
+# include <stack>
 # include <iterator>
+# include "include/stack.hpp"
 
 
 int main() {
     {
-        std::cout << "Standart vector\n";
-        std::vector<int> b;
-        for (int i = 0; i < 10; i++)
-            b.push_back(i);
-        std::cout << "Max size is " << b.max_size() << "\n";
-        std::cout << "Size is " << b.size() << "\n";
-        std::cout << "Capacity is " << b.capacity() << "\n";
-        std::vector<int>::iterator bg = b.begin();
-        std::vector<int>::iterator ed = b.end();
-        std::cout << *(bg + 5) << "\n";
-        std::vector<int>::reverse_iterator red(bg);
-        std::vector<int>::reverse_iterator rbg(red);
-        if (rbg == red)
-            std::cout << ed - bg  << "\n";
+        std::stack<float> p;
+        std::stack<float> pic;
+        float *begin;
+        float *end;
+        for (int i = 0; i <= 10; i++) {
+                p.push(i);
+            if (i < 10)
+                pic.push(i);
+            if (i == 9)
+                begin = &(p.top()) - 9;
+        }
+        pic.push(7);
+        std::cout << "Size pic is " << pic.size() << "\n";
+        end = &(p.top()) + 1;
+        if (p > pic)
+            std::cout << "Yesyes\n";
         else
-            std::cout << "nonono\n";
-        while (rbg != red)
-            std::cout << *rbg++ << "\n";
+            std::cout << "nono\n";
+        while (begin != end)
+            std::cout << *begin++ << "\n";
+        std::cout << p.size() << "\n\n";
     }
 
-    std::cout << "MY vector\n";
-    ft::vector<int> b;
-    for (int i = 0; i < 10; i++)
-        b.push_back(i);
-    std::cout << "Max size is " << b.max_size() << "\n";
-    std::cout << "Size is " << b.size() << "\n";
-    std::cout << "Capacity is " << b.capacity() << "\n";
-    ft::vector<int>::iterator bg = b.begin();
-    ft::vector<int>::iterator ed = b.end();
-    std::cout << *(bg + 5) << "\n";
-    ft::vector<int>::reverse_iterator red(bg);
-    ft::vector<int>::reverse_iterator rbg(red);
-    if (rbg == red)
-        std::cout << ed - bg  << "\n";
+    ft::stack<float> p;
+    ft::stack<float> pic;
+    float *begin;
+    float *end;
+    for (int i = 0; i <= 10; i++) {
+        p.push(i);
+        if (i < 10)
+            pic.push(i);
+        if (i == 9)
+            begin = &(p.top()) - 9;
+    }
+    pic.push(7);
+    std::cout << "Size pic is " << pic.size() << "\n";
+    end = &(p.top()) + 1;
+    if (p > pic)
+        std::cout << "Yesyes\n";
     else
-        std::cout << "nonono\n";
-    while (rbg != red)
-        std::cout << *rbg++ << "\n";
-
+        std::cout << "nono\n";
+    while (begin != end)
+        std::cout << *begin++ << "\n";
+    std::cout << p.size() << "\n\n";
 }

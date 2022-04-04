@@ -351,14 +351,12 @@ namespace ft {
 
     template <class T, class Alloc>
     bool operator>(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
-        return(!ft::lexicographical_compare(first.begin(), first.end(),
-                                           last.begin(), last.end()));
+        return(!(first < last));
     }
 
     template <class T, class Alloc>
     bool operator>=(const ft::vector<T,Alloc>& first, const ft::vector<T,Alloc>& last){
-        return(!ft::lexicographical_compare(first.begin(), first.end(),
-                                           last.begin(), last.end()) ||
+        return(!(first < last) ||
                ft::equal(first.begin(), first.end(), last.begin()));
     }
 }
