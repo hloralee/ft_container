@@ -79,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "20"
+			"value" : "19"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -955,7 +955,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20"
+			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.19"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
