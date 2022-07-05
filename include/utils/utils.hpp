@@ -188,9 +188,29 @@ namespace ft {
 
     template <class Value>
     struct Node {
-        Value               val;
-        Node                *parent;
-        Node                *left;
-        Node                *right;
+        Value val;
+        Node *parent;
+        Node *left;
+        Node *right;
+
+        Node(Node *parent = null_ptr, Node *left = null_ptr, Node *right = null_ptr) :
+                val(), parent(parent), left(left), right(right) {}
+
+        Node(const Value &value, Node *parent = null_ptr, Node *left = null_ptr, Node *right = null_ptr) :
+                val(value), parent(parent), left(left), right(right) {}
+
+        Node(const Node &nd) : val(nd.val), parent(nd.parent), left(nd.left), right(nd.right) {}
+
+        virtual ~Node() {}
+
+        Node &operator=(const Node &nd) {
+            if (this == &nd)
+                return (*this);
+            this->val = nd.val;
+            this->parent = nd.parent;
+            this->left = nd.left;
+            this->right = nd.right;
+            return (*this);
+        }
     };
 }

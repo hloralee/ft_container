@@ -1116,7 +1116,7 @@ namespace ft
             **
             ** @param val the value to copy.
             */
-            BST_Node (const value_type& val, BST_Node* parent = u_nullptr,
+            BST_Node (const valNo0deue_type& val, BST_Node* parent = u_nullptr,
                     BST_Node* left = u_nullptr, BST_Node* right = u_nullptr)
             :
                 value(val),

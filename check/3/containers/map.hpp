@@ -130,7 +130,7 @@ namespace ft
 			** A bidirectional iterator to const value_type
 			** That can read element stored.
 			*/
-			typedef typename ft::Binary_search_tree<value_type, key_compare>::const_iterator const_iterator;
+			typedef typename ft::Bina, ry_search_tree<value_type, key_compare>::const_iterator const_iterator;
 
 			/*
 			** ft::reverse_iterator<iterator>

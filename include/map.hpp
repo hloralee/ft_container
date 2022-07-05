@@ -13,21 +13,21 @@ namespace ft {
             class Alloc = std::allocator<ft::pair<const Key,T> > >
     class map {
     public:
-        typedef  Key                                                key_type;
-        typedef  T                                                  mapped_type;
-        typedef  ft::pair<const key_type,mapped_type>               value_type;
-        typedef  Compare                                            key_compare;
-        typedef  Alloc                                              allocator_type;
-        typedef  typename allocator_type::reference                 reference;
-        typedef  typename allocator_type::const_reference           const_reference;
-        typedef  typename allocator_type::pointer                   pointer;
-        typedef  typename allocator_type::const_pointer             const_pointer;
-        typedef  ft::bidirectional_iterator<value_type, Compare>    iterator;
-        typedef  ft::bidirectional_iterator<value_type, Compare>    const_iterator;
-        typedef  reverse_iterator<iterator>                         reverse_iterator;
-//        typedef  reverse_iterator<const_iterator>                   const_reverse_iterator;
-        typedef  ptrdiff_t                                          difference_type;
-        typedef  size_t                                             size_type;
+        typedef  Key                                                        key_type;
+        typedef  T                                                          mapped_type;
+        typedef  ft::pair<const key_type,mapped_type>                       value_type;
+        typedef  Compare                                                    key_compare;
+        typedef  Alloc                                                      allocator_type;
+        typedef  typename allocator_type::reference                         reference;
+        typedef  typename allocator_type::const_reference                   const_reference;
+        typedef  typename allocator_type::pointer                           pointer;
+        typedef  typename allocator_type::const_pointer                     const_pointer;
+        typedef  ft::bidirectional_iterator<value_type, Compare>            iterator;
+        typedef  ft::bidirectional_iterator<const value_type, Compare>      const_iterator;
+        typedef  ft::reverse_iterator<iterator>                             reverse_iterator;
+        typedef  ft::reverse_iterator<const_iterator>                       const_reverse_iterator;
+        typedef  ptrdiff_t                                                  difference_type;
+        typedef  size_t                                                     size_type;
 
         class value_compare {
             friend class map;
@@ -41,11 +41,32 @@ namespace ft {
             }
         };
 
+        explicit map (const key_compare& comp = key_compare(),
+                      const allocator_type& alloc = allocator_type()) :
+                      _comp(comp), _alloc(alloc), _parent() {}
+
+        template <class InputIterator>
+        map (InputIterator first, InputIterator last,
+             const key_compare& comp = key_compare(),
+             const allocator_type& alloc = allocator_type(),
+             typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+                     InputIterator>::type* = null_ptr) :
+                _comp(comp), _alloc(alloc), _parent() {
+//            insert(first, last);
+        }
+
+        map (const map& x) : _comp(x._comp), _alloc(x._alloc), _parent() {
+            if (this == &x)
+                return ;
+//            insert(x.begin(), x.end());
+        }
     private:
-        allocator_type          _alloc;
-        Compare                 _comp;
-        ft::Node<value_type>    _parent;
-        size_type               _size;
+        typedef ft::Node<value_type>            tree;
+        allocator_type                          _alloc;
+        Compare                                 _comp;
+        tree                                    _parent;
+        size_type                               _size;
+        std::allocator<tree>                    _allocNd;
 
 
 
