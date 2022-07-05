@@ -185,4 +185,12 @@ namespace ft {
         typedef  Pt pointer;
         typedef  Rf reference;
     };
+
+    template <class Value>
+    struct Node {
+        Value               val;
+        Node                *parent;
+        Node                *left;
+        Node                *right;
+    };
 }

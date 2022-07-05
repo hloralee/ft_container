@@ -5,7 +5,8 @@
 #include <iterator>
 #include <stdexcept>
 #include <cmath>
-# include "utils/utils.hpp"
+#include "utils/utils.hpp"
+#include "utils/bidirectional_iterator.hpp"
 
 namespace ft {
     template < class Key, class T, class Compare = ft::less<Key>,
@@ -21,9 +22,9 @@ namespace ft {
         typedef  typename allocator_type::const_reference           const_reference;
         typedef  typename allocator_type::pointer                   pointer;
         typedef  typename allocator_type::const_pointer             const_pointer;
-//        typedef  ft::bidirectional_iterator<const Key, T>           iterator;
-//        typedef  ft::bidirectional_iterator<const Key, const T>     const_iterator;
-//        typedef  reverse_iterator<iterator>                         reverse_iterator;
+        typedef  ft::bidirectional_iterator<value_type, Compare>    iterator;
+        typedef  ft::bidirectional_iterator<value_type, Compare>    const_iterator;
+        typedef  reverse_iterator<iterator>                         reverse_iterator;
 //        typedef  reverse_iterator<const_iterator>                   const_reverse_iterator;
         typedef  ptrdiff_t                                          difference_type;
         typedef  size_t                                             size_type;
@@ -40,6 +41,11 @@ namespace ft {
             }
         };
 
+    private:
+        allocator_type          _alloc;
+        Compare                 _comp;
+        ft::Node<value_type>    _parent;
+        size_type               _size;
 
 
 
