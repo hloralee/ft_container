@@ -80,12 +80,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/hloralee/Desktop/ft_container/include/map.hpp">
-			<Option target="ft_container"/>
-		</Unit>
-		<Unit filename="/Users/hloralee/Desktop/ft_container/include/utils/bidirectional_iterator.hpp">
-			<Option target="ft_container"/>
-		</Unit>
 		<Unit filename="/Users/hloralee/Desktop/ft_container/test.cpp">
 			<Option target="ft_container"/>
 		</Unit>

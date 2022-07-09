@@ -6,9 +6,31 @@
 
 #IncludeRegexTransform: 
 
+/Users/hloralee/Desktop/ft_container/include/map.hpp
+memory
+-
+algorithm
+-
+iostream
+-
+iterator
+-
+stdexcept
+-
+cmath
+-
+utils/utils.hpp
+/Users/hloralee/Desktop/ft_container/include/utils/utils.hpp
+utils/bidirectional_iterator.hpp
+/Users/hloralee/Desktop/ft_container/include/utils/bidirectional_iterator.hpp
+
 /Users/hloralee/Desktop/ft_container/include/stack.hpp
 vector.hpp
 /Users/hloralee/Desktop/ft_container/include/vector.hpp
+
+/Users/hloralee/Desktop/ft_container/include/utils/bidirectional_iterator.hpp
+utils.hpp
+/Users/hloralee/Desktop/ft_container/include/utils/utils.hpp
 
 /Users/hloralee/Desktop/ft_container/include/utils/random_access_iterator.hpp
 utils.hpp
@@ -53,8 +75,12 @@ vector
 -
 stack
 -
+map
+-
 iterator
 -
 include/stack.hpp
 /Users/hloralee/Desktop/ft_container/include/stack.hpp
+include/map.hpp
+/Users/hloralee/Desktop/ft_container/include/map.hpp
 

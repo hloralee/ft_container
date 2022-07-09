@@ -60,6 +60,87 @@ namespace ft {
                 return ;
 //            insert(x.begin(), x.end());
         }
+
+        ~map() {
+//            clear();
+        }
+
+        map& operator= (const map& x) {
+            if (this == &x)
+                return *this;
+//            clear();
+//            insert(x.begin(), x.end());
+            return *this;
+        }
+
+        iterator begin() {
+            if (_parent.left == null_ptr)
+                return _parent;
+            tree tmp = _parent;
+            while (tmp.left != null_ptr)
+                tmp = tmp.left;
+            return tmp.parent->left;
+        }
+
+        const_iterator begin() const {
+            return begin();
+        }
+
+        iterator end() {
+            if (_parent.right == null_ptr)
+                return _parent;
+            tree tmp = _parent;
+            while (tmp.right != null_ptr)
+                tmp = tmp.right;
+            return tmp.parent->right;
+        }
+
+        const_iterator end() const {
+            return end();
+        }
+
+        reverse_iterator rbegin() {
+            return end();
+        }
+
+        const_reverse_iterator rbegin() const {
+            return end();
+        }
+
+        reverse_iterator rend() {
+            return begin();
+        }
+
+        const_reverse_iterator rend() const {
+            return begin();
+        }
+
+        bool empty() const {
+            return (_size == 0 ? true : false);
+        }
+
+        size_type size() const {
+            return _size;
+        }
+
+        size_type   max_size() const {
+            return (_alloc.max_size());
+        }
+
+        pair<iterator,bool> insert (const value_type& val) {
+
+        }
+
+        iterator insert (iterator position, const value_type& val) {
+
+        }
+
+        template <class InputIterator>
+        void insert (InputIterator first, InputIterator last,
+                     typename ft::enable_if<!ft::is_integral<InputIterator>::value,
+                             InputIterator>::type* = null_ptr) {
+
+        }
     private:
         typedef ft::Node<value_type>            tree;
         allocator_type                          _alloc;
